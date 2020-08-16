@@ -1,18 +1,17 @@
 package helpers;
 
-
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static helpers.EnvironmentHelper.bsLogin;
-import static helpers.EnvironmentHelper.bsPassword;
+import static helpers.EnvironmentHelper.BS_LOGIN;
+import static helpers.EnvironmentHelper.BS_PASSWORD;
 import static io.restassured.RestAssured.given;
 
 public class BrowserstackHelper {
 
     public static URL getBrowserstackUrl() {
         try {
-            return new URL("https://" + bsLogin + ":" + bsPassword + "@hub-cloud.browserstack.com/wd/hub");
+            return new URL("https://" + BS_LOGIN + ":" + BS_PASSWORD + "@hub-cloud.browserstack.com/wd/hub");
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -20,7 +19,7 @@ public class BrowserstackHelper {
 
     public static String getBrowserstackVideoUrl(String sessionId) {
         String video_url = given()
-                .auth().basic(bsLogin, bsPassword)
+                .auth().basic(BS_LOGIN, BS_PASSWORD)
                 .when()
                 .get("https://api-cloud.browserstack.com/app-automate/sessions/" + sessionId +".json")
                 .then()
@@ -35,7 +34,7 @@ public class BrowserstackHelper {
 
     public static String getBSPublicLink(String sessionId){
         String publicUrl = given()
-                .auth().basic(bsLogin, bsPassword)
+                .auth().basic(BS_LOGIN, BS_PASSWORD)
                 .when()
                 .get("https://api-cloud.browserstack.com/app-automate/sessions/" + sessionId +".json")
                 .then()
@@ -48,4 +47,5 @@ public class BrowserstackHelper {
         System.out.println("bs_build_url: " + publicUrl.split("/sessions/")[0]);
         return publicUrl;
     }
+
 }

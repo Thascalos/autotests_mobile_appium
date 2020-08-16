@@ -8,7 +8,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.openqa.selenium.logging.LogType.BROWSER;
 
-
 public class DriverHelper {
 
     public static void configureSelenide() {

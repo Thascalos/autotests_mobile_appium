@@ -6,7 +6,6 @@ import org.openqa.selenium.TakesScreenshot;
 
 import java.nio.charset.StandardCharsets;
 
-
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static helpers.BrowserstackHelper.getBrowserstackVideoUrl;
 
@@ -34,6 +33,5 @@ public class AttachmentsHelper {
                 + getBrowserstackVideoUrl(sessionId)
                 + "' type='video/mp4'></video></body></html>";
     }
-
 
 }

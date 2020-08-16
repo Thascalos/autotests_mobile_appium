@@ -74,7 +74,19 @@ tasks.withType(Test) {
     }
 }
 
-task RunAll(type: Test) {
+task ios(type: Test) {
+    useJUnitPlatform {
+        includeTags 'ios'
+    }
+}
+
+task android(type: Test) {
+    useJUnitPlatform {
+        includeTags 'android'
+    }
+}
+
+task all(type: Test) {
     useJUnitPlatform {
         includeTags 'android'
         includeTags 'ios'

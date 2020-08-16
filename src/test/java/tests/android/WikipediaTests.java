@@ -10,23 +10,25 @@ import org.junit.jupiter.api.Test;
 import tests.TestBase;
 
 import static com.codeborne.selenide.Selenide.*;
+import static helpers.EnvironmentHelper.KEYWORD;
 import static io.qameta.allure.Allure.step;
 
 @Feature("Selenide-appium Android tests")
 @Story("Search tests")
 @Tag("android")
 class WikipediaTests extends TestBase {
-    @Test
-    @DisplayName("Successful search in wikipedia android app")
-    void successfulSearch() {
-        step("Open application", ()-> open());
 
-        step("Type search", ()-> {
+    @Test
+    @DisplayName("Успешный поиск фразы в приложении Wikipedia")
+    void successfulSearch() {
+        step("Открыть приложение", ()-> open());
+
+        step("Вбить в поиск фразу", ()-> {
             $(MobileBy.AccessibilityId("Search Wikipedia")).click();
-            $(MobileBy.id("org.wikipedia.alpha:id/search_src_text")).sendKeys("BrowserStack");
+            $(MobileBy.id("org.wikipedia.alpha:id/search_src_text")).sendKeys(KEYWORD);
         });
 
-        step("Verify content found", ()-> {
+        step("Проверить что контент существует", ()-> {
             $$(MobileBy.className("android.widget.TextView"))
                     .shouldHave(CollectionCondition.sizeGreaterThan(0));
         });
